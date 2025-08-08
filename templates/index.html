@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="'en">
+  <head>
+    <meta charset="'UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YOLOv8 Object Detection</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/style.css')}}"
+    />
+    <body>
+      <main>
+        <h1>YOLOv8 Object Detection</h1>
+        <p>Upload an image to see the objects detected by the model.</p>
+
+        <section class="upload-section">
+          <form method="post" enctype="multipart/form-data">
+            <!-- Custom-styled file input -->
+            <label for="file-upload" class="custom-file-upload">
+              Choose File
+            </label>
+            <input
+              id="file-upload"
+              name="file"
+              type="file"
+              accept="image/png, image/jpeg, image/jpg"
+              required
+            />
+            <span id="file-name">No file chosen</span>
+
+            <button type="submit">Detect Objects</button>
+          </form>
+        </section>
+
+        <!-- This section will only be displayed after an image is processed -->
+        {% if filename %}
+        <section class="results-container">
+          <div class="image-box">
+            <h2>Original Image</h2>
+            <img
+              src="{{ url_for('static', filename='uploads/' + filename) }}"
+              alt="Original Image"
+            />
+          </div>
+          <div class="image-box">
+            <h2>Detected Image</h2>
+            <img
+              src="{{ url_for('static', filename='results/' + filename) }}"
+              alt="Detected Image"
+            />
+          </div>
+        </section>
+        {% endif %}
+      </main>
+
+      <script>
+        // This script updates the "No file chosen" text with the actual file name
+        const fileInput = document.getElementById("file-upload");
+        const fileNameSpan = document.getElementById("file-name");
+
+        fileInput.addEventListener("change", function () {
+          if (fileInput.files.length > 0) {
+            fileNameSpan.textContent = fileInput.files[0].name;
+          } else {
+            fileNameSpan.textContent = "No file chosen";
+          }
+        });
+      </script>
+    </body>
+  </head>
+</html>
