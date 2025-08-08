@@ -4,7 +4,7 @@ This is a Flask-based web application for object detection using the YOLOv8 mode
 
 ## Demo
 
-[Watch the video demo here](YOUR_VIDEO_LINK_HERE)
+[Watch the video demo here](https://drive.google.com/file/d/1mL3j8UNiIkVgiV_7C-LjC38wtg8qeOir/view?usp=sharing)
 
 ## Features
 
